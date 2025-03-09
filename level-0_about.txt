@@ -1,0 +1,89 @@
+Overview
+
+This Python code imports grayscale images from a given folder, shows them with Matplotlib, and checks their format. The images are stored in:
+
+C:/Users/Manan Kulshrestha/PycharmProjects/IEEE_CS_AI_ML/images/
+
+The code makes sure the images are read correctly prior to processing.
+
+Step-by-Step Explanation
+
+Required Libraries:-
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+Folder Path for Images:-
+
+folder_path = "C:/Users/Manan Kulshrestha/PycharmProjects/IEEE_CS_AI_ML/images/"
+
+This defines the folder containing the images.
+
+Image File names:-
+
+image_files = ["image1.png", "image2.png", "image3.png"]
+
+List of filenames of images that will be loaded from the defined folder.
+
+Loading Images in Grayscale:-
+
+images = [cv2.imread(folder_path + img, cv2.IMREAD_GRAYSCALE) for img in image_files]
+images = [img for img in images if img is not None]  # Remove any failed loads
+
+cv2.imread(folder_path + img, cv2.IMREAD_GRAYSCALE): Reads each image in grayscale mode.
+
+The second line ensures that only successfully loaded images are retained.
+
+Verifying If Images Were Loaded Successfully:-
+
+if not images:
+    print("No valid images found. Please check the image path.")
+    exit()
+
+If no valid images are found, the script prints a message and exits.
+
+Printing Dataset Information:-
+
+print("Number of images:", len(images))
+print("Shape of first image:", images[0].shape)
+
+Prints the total number of successfully loaded images.
+
+Displays the dimensions of the first image (height, width).
+
+Displaying Images with Matplotlib:-
+
+plt.figure(figsize=(10, 4))
+for i, img in enumerate(images):
+    plt.subplot(1, len(images), i + 1)
+    plt.imshow(img, cmap='gray')
+    plt.title(f"Image {i+1}")
+    plt.axis("off")
+plt.show()
+
+plt.figure(figsize=(10, 4)): Produces a figure with a given size.
+
+A loop runs through images:
+
+plt.subplot(1, len(images), i + 1): Generates subplots for more than one image.
+
+plt.imshow(img, cmap='gray'): Shows the image in grayscale.
+
+plt.title(f"Image {i+1}"): Places a title on each image.
+
+plt.axis("off"): Removes axis labels for better viewing.
+
+plt.show(): Shows all the images.
+
+Checking Grayscale Format:-
+
+if len(images[0].shape) == 2:
+    print("The image is in grayscale format.")
+else:
+print("The image is not grayscale format.")
+
+Verifies whether the image contains only two dimensions (height, width), ensuring it is grayscale.
+
+If an image contains a third dimension (e.g., height, width, channels), then it is not grayscale.

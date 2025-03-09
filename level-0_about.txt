@@ -8,6 +8,7 @@ matplotlib.pyplot is utilized for displaying the images.
 
 Loading the Dataset:-
 
+
 The data from the CSV file data.csv is imported into a Pandas DataFrame (df).
 
 Basic Information Regarding the Dataset:-

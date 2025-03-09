@@ -6,19 +6,19 @@ import seaborn as sns
 # Load dataset
 df = pd.read_csv('data.csv')
 
-# 1️⃣ Basic Info
+# Basic Info
 print("Dataset Shape:", df.shape)
 print("\nDataset Info:")
 print(df.info())
 
-# 2️⃣ Check for Missing Values
+#  Check for Missing Values
 print("\nMissing Values:", df.isnull().sum().sum())
 
-# 3️⃣ Summary Statistics for Pixel Values
+# Summary Statistics for Pixel Values
 print("\nSummary Statistics:")
 print(df.describe())
 
-# 4️⃣ Pixel Statistics Function
+# Pixel Statistics Function
 def pixel_statistics(df):
     """Compute statistics for pixel values in the dataset."""
     pixel_values = df.iloc[:, 1:].values.flatten()  # Ignore the first column (labels)
@@ -36,7 +36,7 @@ print("\nPixel Value Statistics:")
 for key, value in stats.items():
     print(f"{key}: {value}")
 
-# 5️⃣ Display Sample Images from Different Labels
+# Display Sample Images from Different Labels
 def display_sample_images(df, num_samples=5):
     plt.figure(figsize=(10, 10))
 
@@ -55,7 +55,7 @@ def display_sample_images(df, num_samples=5):
 
 display_sample_images(df)
 
-# 6️⃣ Heatmap of First 20 Features (Optional)
+# Heatmap of First 20 Features (Optional)
 plt.figure(figsize=(10, 8))
 corr = df.iloc[:, 1:21].corr()  # Correlation of first 20 pixels
 sns.heatmap(corr, cmap='coolwarm', annot=False)

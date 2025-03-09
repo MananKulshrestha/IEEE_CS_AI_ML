@@ -1,89 +1,28 @@
-Overview
+This code investigates and displays the dataset in data.csv, which has pixel color values between 0 and 255. The dataset is presumed to have grayscale images of 28x28 pixels, with the labels in the first column.
 
-This Python code imports grayscale images from a given folder, shows them with Matplotlib, and checks their format. The images are stored in:
+Importing Libraries:-
 
-C:/Users/Manan Kulshrestha/PycharmProjects/IEEE_CS_AI_ML/images/
+pandas is utilized for data manipulation and CSV file reading.
+numpy is utilized for numerical computations
+matplotlib.pyplot is utilized for displaying the images.
 
-The code makes sure the images are read correctly prior to processing.
+Loading the Dataset:-
 
-Step-by-Step Explanation
+The data from the CSV file data.csv is imported into a Pandas DataFrame (df).
 
-Required Libraries:-
+Basic Information Regarding the Dataset:-
 
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
+The dataset's shape (df.shape) is printed to know the number of samples (rows) and features + label (columns)
+The first few rows of the dataset (df.head()) are printed.
 
+Displaying Sample Images:-
 
-Folder Path for Images:-
+A 10-sample image figure is ploted using matplotlib.
+Each image is reshaped into a 28x28 matrix and plotted in grayscale (cmap='gray').
+The caption of every image is fetched from the first column and shown as the title
+The images are shown in a 2x5 grid.
 
-folder_path = "C:/Users/Manan Kulshrestha/PycharmProjects/IEEE_CS_AI_ML/images/"
+Confirming Pixel Value Range:-
 
-This defines the folder containing the images.
-
-Image File names:-
-
-image_files = ["image1.png", "image2.png", "image3.png"]
-
-List of filenames of images that will be loaded from the defined folder.
-
-Loading Images in Grayscale:-
-
-images = [cv2.imread(folder_path + img, cv2.IMREAD_GRAYSCALE) for img in image_files]
-images = [img for img in images if img is not None]  # Remove any failed loads
-
-cv2.imread(folder_path + img, cv2.IMREAD_GRAYSCALE): Reads each image in grayscale mode.
-
-The second line ensures that only successfully loaded images are retained.
-
-Verifying If Images Were Loaded Successfully:-
-
-if not images:
-    print("No valid images found. Please check the image path.")
-    exit()
-
-If no valid images are found, the script prints a message and exits.
-
-Printing Dataset Information:-
-
-print("Number of images:", len(images))
-print("Shape of first image:", images[0].shape)
-
-Prints the total number of successfully loaded images.
-
-Displays the dimensions of the first image (height, width).
-
-Displaying Images with Matplotlib:-
-
-plt.figure(figsize=(10, 4))
-for i, img in enumerate(images):
-    plt.subplot(1, len(images), i + 1)
-    plt.imshow(img, cmap='gray')
-    plt.title(f"Image {i+1}")
-    plt.axis("off")
-plt.show()
-
-plt.figure(figsize=(10, 4)): Produces a figure with a given size.
-
-A loop runs through images:
-
-plt.subplot(1, len(images), i + 1): Generates subplots for more than one image.
-
-plt.imshow(img, cmap='gray'): Shows the image in grayscale.
-
-plt.title(f"Image {i+1}"): Places a title on each image.
-
-plt.axis("off"): Removes axis labels for better viewing.
-
-plt.show(): Shows all the images.
-
-Checking Grayscale Format:-
-
-if len(images[0].shape) == 2:
-    print("The image is in grayscale format.")
-else:
-print("The image is not grayscale format.")
-
-Verifies whether the image contains only two dimensions (height, width), ensuring it is grayscale.
-
-If an image contains a third dimension (e.g., height, width, channels), then it is not grayscale.
+The pixel values of a sample image are pulled out and reshaped into 28x28
+The minimum and maximum pixel values are printed to verify that they are in the expected grayscale range (0-255)

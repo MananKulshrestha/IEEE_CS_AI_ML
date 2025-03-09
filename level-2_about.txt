@@ -1,0 +1,52 @@
+This code uses machine learning to predict clothing images on the basis of pixel values from data.csv. It preprocessed the dataset, trained a logistic regression model, checked its performance, and implemented SHAP for Explainable AI.
+
+Importing Libraries:-
+
+import pandas and numpy for handling data.
+import matplotlib.pyplot and seaborn for visualization.
+import sklearn.model_selection for dividing the dataset into training and test sets.
+import sklearn.linear_model for training logistic regression.
+import sklearn.metrics for checking accuracy, classification reports, confusion matrices, and log loss.
+shap for Explainable AI to interpret feature importance.
+
+Loading and Examining the Dataset:-
+
+The CSV dataset is loaded into a Pandas DataFrame.
+The shape of the dataset and the first few rows are shown.
+
+Mapping Label Numbers to Apparel Types:-
+
+A dictionary is defined to map label numbers (0-9) to apparel types like T-shirt, Trouser, Dress, etc.
+
+Displaying Sample Images with Labels:-
+
+Five sample images for each type of apparel are shown.
+Every image is resized to 28x28 pixels and displayed in grayscale.
+
+Data Preprocessing:-
+
+The label column is isolated as the target variable y.
+Pixel values are divided by 255 to normalize them between 0 and 1.
+
+Splitting the Dataset:-
+
+Dataset is divided into training (80%) and test (20%) sets.
+
+Training a Logistic Regression Model:-
+
+Multinomial logistic regression model is trained on lbfgs solver with a max of 1000 iterations.
+
+Evaluating the Model:-
+
+Predictions are generated on the test set.
+Accuracy and log loss are calculated.
+A classification report is produced.
+
+Visualizing the Confusion Matrix:-
+
+Heatmap of confusion matrix is created using seaborn to display patterns of misclassification.
+
+Explainable AI with SHAP:-
+
+SHAP values are calculated to explain feature importance.
+A bar plot shows the most significant pixels contributing to classification.

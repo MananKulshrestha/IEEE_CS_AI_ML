@@ -1,0 +1,45 @@
+This code executes a thorough examination of data.csv, which stores grayscale pixel intensity values between 0 and 255. It analyzes the dataset's organization, tests for missing values, calculates pixel statistics, displays sample images, and prints a correlation heatmap.
+
+Importing Libraries:-
+
+pandas is applied for data manipulation and loading.
+numpy is utilized for numerical computing.
+matplotlib.pyplot is utilized to display images and graphs.
+seaborn is utilized to design a heatmap to perform correlation analysis.
+
+Loading the Dataset:-
+
+The dataset is loaded into a Pandas DataFrame (df).
+
+Basic Information About the Dataset:-
+
+The shape of the dataset (df.shape) is printed to reveal the number of rows (samples) and columns (features + label).
+df.info() offers information on column data types and non-null counts.
+
+Checking for Missing Values:-
+
+The overall number of missing values in the dataset is printed.
+
+Summary Statistics for Pixel Values:-
+
+df.describe() calculates statistical values (mean, std, min, max, etc.) for all columns.
+
+Pixel Value Statistics:-
+
+A function pixel_statistics(df) takes all the pixel values (excluding the label column) and calculates:
+Mean
+Standard deviation
+Minimum and maximum pixel value
+The calculated statistics are displayed.
+
+Displaying Sample Images from Different Labels:-
+
+The function display_sample_images(df, num_samples=5) gets a few images for each distinct label.
+Each image is reshaped into 28x28 and visualized in grayscale.
+The pictures are arranged in a matrix in which the rows correspond to different labels.
+
+Correlation Heatmap of First 20 Features:-
+
+The first 20 columns of pixels' correlation matrix is computed.
+We create a heatmap of the association among these pixel values using seaborn.
+The heat map is generated using a coolwarm color.

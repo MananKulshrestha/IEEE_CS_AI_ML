@@ -1,0 +1,58 @@
+This code trains a neural network with TensorFlow and Keras to label clothing images on the basis of pixel values from data.csv. It preprocesses data, trains a deep model, tests its performance, and displays the outcomes.
+
+Importing Libraries:-
+
+pandas and numpy for data handling.
+tensorflow and keras for deep learning.
+seaborn and matplotlib.pyplot for visualization.
+sklearn.model_selection for splitting the dataset.
+sklearn.preprocessing for scaling features.
+sklearn.metrics for metrics to evaluate.
+
+Enabling GPU Acceleration:-
+
+The code looks for available GPUs and allows for memory expansion to improve training efficiency.
+
+Loading and Preprocessing Data:-
+
+The CSV file is read into a Pandas DataFrame.
+The first column is presumed to be labels (y), and the remaining columns are pixel values (X).
+Pixel values are scaled (0-255 to 0-1).
+The dataset is divided into training (80%) and validation (20%) sets.
+
+Defining the Neural Network Architecture:-
+
+A sequential model is initialized with three layers:
+Input layer: 128 neurons, ReLU activation.
+Hidden layer: 64 neurons, ReLU activation.
+Output layer: 10 neurons (one for each clothing class), softmax activation.
+
+Compiling the Model:-
+
+The model is compiled with the Adam optimizer.
+The loss function is sparse categorical cross-entropy (for multi-class classification).
+Accuracy is selected as the metric for evaluation.
+
+Training the Model:-
+
+The model is trained for 10 epochs at a batch size of 32.
+Validation data is given to monitor performance during training.
+
+Evaluating the Model:-
+
+The trained model is tested on the validation set.
+Validation accuracy is printed.
+
+Generating Predictions:-
+
+Predictions are generated on the validation set.
+The class with the highest probability is taken as the predicted label.
+
+Visualizing the Confusion Matrix:-
+
+A confusion matrix is calculated to display correct and incorrect classifications.
+A heatmap is plotted with seaborn to visualize classification performance.
+
+Printing the Classification Report:-
+
+A classification report is printed with precision, recall, and F1-score for each category.

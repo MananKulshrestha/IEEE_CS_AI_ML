@@ -1,38 +1,28 @@
-import cv2
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Define the path to the images folder
-folder_path = "C:/Users/Manan Kulshrestha/PycharmProjects/IEEE_CS_AI_ML/images/"
-
-# List of image filenames
-image_files = ["image1.png", "image2.png", "image3.png"]
-
-# Load images using cv2, ensuring non-null values
-images = [cv2.imread(folder_path + img, cv2.IMREAD_GRAYSCALE) for img in image_files]
-images = [img for img in images if img is not None]  # Remove any failed loads
-
-# Check if images were loaded
-if not images:
-    print("No valid images found. Please check the image path.")
-    exit()
+# Load the dataset
+df = pd.read_csv('data.csv')
 
 # Check dataset shape
-print("Number of images:", len(images))
-print("Shape of first image:", images[0].shape)
+print("Dataset Shape:", df.shape)
 
-# Display images with labels
-plt.figure(figsize=(10, 4))
-for i, img in enumerate(images):
-    plt.subplot(1, len(images), i + 1)
-    plt.imshow(img, cmap='gray')
-    plt.title(f"Image {i+1}")
-    plt.axis("off")
+# Display the first few rows of the dataset
+print(df.head())
 
+# Display a few images with labels
+plt.figure(figsize=(10, 5))
+for i in range(10):
+    image = df.iloc[i, 1:].values.reshape(28, 28)  # Assuming 28x28 grayscale images
+    label = df.iloc[i, 0]  # First column as label
+    plt.subplot(2, 5, i + 1)
+    plt.imshow(image, cmap='gray')
+    plt.title(f'Label: {label}')
+    plt.axis('off')
+plt.tight_layout()
 plt.show()
 
-# Verify grayscale format of the first image
-if len(images[0].shape) == 2:
-    print("The image is in grayscale format.")
-else:
-    print("The image is not in grayscale format.")
+# Verify grayscale format by checking pixel value range
+sample_image = df.iloc[0, 1:].values.reshape(28, 28)
+print("Pixel Values Range:", sample_image.min(), "-", sample_image.max())
